@@ -1,2 +1,41 @@
-# STOCKS
-I want to process the data feed of stock A and stock B’s price to enable us to analyse when trading for the stock should occur.
+class Stock:
+    def __init__(self, name, bid_price, ask_price):
+        self.name = name
+        self.bid_price = bid_price
+        self.ask_price = ask_price
+
+    def get_data_point(self):
+        price = (self.bid_price + self.ask_price) / 2
+        return self.name, self.bid_price, self.ask_price, price
+
+def get_ratio(stock_a, stock_b):
+    ratio = stock_a.ask_price / stock_b.bid_price
+    return ratio
+
+def main():
+    # Sample data for stock A and stock B
+    stock_a = Stock(name="StockA", bid_price=100, ask_price=105)
+    stock_b = Stock(name="StockB", bid_price=75, ask_price=80)
+
+    # Get data points for both stocks
+    stock_a_data = stock_a.get_data_point()
+    stock_b_data = stock_b.get_data_point()
+
+    # Get ratio of the two stock prices
+    ratio = get_ratio(stock_a, stock_b)
+
+    # Output results
+    print("Stock A:")
+    print("Name:", stock_a_data[0])
+    print("Bid Price:", stock_a_data[1])
+    print("Ask Price:", stock_a_data[2])
+    print("Price:", stock_a_data[3])
+    print("\nStock B:")
+    print("Name:", stock_b_data[0])
+    print("Bid Price:", stock_b_data[1])
+    print("Ask Price:", stock_b_data[2])
+    print("Price:", stock_b_data[3])
+    print("\nRatio of Stock A and Stock B prices:", ratio)
+
+if __name__ == "__main__":
+    main()
